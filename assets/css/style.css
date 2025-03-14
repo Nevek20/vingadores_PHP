@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.login{
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(red, green, blue, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+.inputInfos{
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label{
+    display: block;
+    margin-bottom: 5px;
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button{
+    width: 100%;
+    padding: 10px;
+    background-color: #0f9413;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #138817;
+    transition: 0.3s ease-in-out;
+}
+
+.esqueci_senha{
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.esqueci_senha:hover{
+    text-decoration: underline;
+}
