@@ -59,23 +59,3 @@ button:hover{
     background-color: #138817;
     transition: 0.3s ease-in-out;
 }
-
-.esqueci_senha{
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
-    color: #4caf50;
-    text-decoration: none;
-}
-
-.esqueci_senha:hover{
-    text-decoration: underline;
-}
-
-#Cadastrar1{
-    display: block;
-    margin-top: 10px !important;
-    color: #4caf50;
-    text-decoration: none !important;
-    /*AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA*/
-}
