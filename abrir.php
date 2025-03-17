@@ -5,12 +5,15 @@ $user = 'root';
 $pw = '';
 
 $banco = new PDO($dsn, $user, $pw);
-
+$banco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $select = 'SELECT id, login, nome_completo, endereco FROM tb_login';
 
-$dados = $banco->query($select)->fetch();
+$id = $_GET['id'];
 
-echo '<pre>';
+$dados = $banco->prepare('SELECT id, nome_completo, endereco FROM tb_login WHERE id = :id');
+$dados->bindParam(':id', $id, PDO::PARAM_INT);
+$dados->execute();
+$dados = $dados->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <html lang="pt-br">

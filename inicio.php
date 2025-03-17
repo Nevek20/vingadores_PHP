@@ -7,9 +7,10 @@ $user = 'root';
 $pw = '';
 
 $banco = new PDO($dsn,$user,$pw);
+$banco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $select = 'SELECT * FROM tb_login';
-$resultado = $banco->query($select)->fetchALL();
+$resultado = $banco->query($select)->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <main class="container my-5"> 
@@ -27,9 +28,9 @@ $resultado = $banco->query($select)->fetchALL();
             <td> <?php echo $lista ['nome_completo'] ?> </td> 
             <td> <?php echo $lista ['endereco'] ?></td>
             <td> 
-                <a href="./abrir.php?id=<?= $lista['id'] ?>" class="btn btn-primary">Abrir</a> 
-                <a href="./editar.php?id=<?= $lista['id'] ?>" class="btn btn-warning">Editar</a>  
-                <a href="#" class="btn btn-danger">Excluir</a> 
+                <a href="abrir.php?id=<?= $lista['id'] ?>" class="btn btn-primary">Abrir</a> 
+                <a href="editar.php?id=<?= $lista['id'] ?>" class="btn btn-warning">Editar</a>  
+                <a href="excluir.php?id=<?= $lista['id'] ?>" class="btn btn-danger">Excluir</a> 
             </td>
         </tr> 
     <?php } ?>

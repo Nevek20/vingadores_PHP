@@ -7,9 +7,9 @@ $banco = new PDO($dsn, $user, $pw);
 $banco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Configuração para exibir erros
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password']; 
-    $nome = $_POST['nome_completo'];
+    $username = $_POST['login'];
+    $password = $_POST['senha']; 
+    $nome_completo = $_POST['nome_completo'];
     $endereco = $_POST['endereco'];
 
     $sql = "INSERT INTO tb_login (login, senha, nome_completo, endereco) VALUES (:login, :senha, :nome_completo, :endereco)";
@@ -18,11 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ligando os parâmetros
     $stmt->bindParam(':login', $username);
     $stmt->bindParam(':senha', $password);
-    $stmt->bindParam(':nome_completo', $nome);
+    $stmt->bindParam(':nome_completo', $nome_completo);
     $stmt->bindParam(':endereco', $endereco);
 
     if ($stmt->execute()) {
-
         header("Location: index.php");
         exit;
     } else {
@@ -45,15 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="" method="POST" id="loginFormulario">
             <div class="inputInfos">
                 <label for="username">Usuário</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="login" required>
             </div>
             <div class="inputInfos">
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="senha" required>
             </div>
             <div class="inputInfos">
                 <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" name="nome" required>
+                <input type="text" id="nome" name="nome_completo" required>
             </div>
             <div class="inputInfos">
                 <label for="endereco">Endereço</label>
