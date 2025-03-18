@@ -5,11 +5,11 @@ $pw = '';
 
 $banco = new PDO($dsn, $user, $pw);
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id'])){
     $id = $_GET['id'];
     $banco->query("DELETE FROM tb_login WHERE id = $id");
 }
 
-header("Location: index.php");
+header("Location: inicio.php");
 exit;
 ?>

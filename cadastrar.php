@@ -4,13 +4,12 @@ $user = 'root';
 $pw = '';
 
 $banco = new PDO($dsn, $user, $pw);
-$banco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Configuração para exibir erros
+$banco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //configura o PDO para lançar exceções em caso de erro, facilitando o tratamento de falhas e a minha vida
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['login'];
     $password = $_POST['senha']; 
     $nome_completo = $_POST['nome_completo'];
-    $endereco = $_POST['endereco'];
     $cpf = $_POST['cpf'];
     $tel1 = $_POST['tel1'];
     $tel2 = $_POST['tel2'];
@@ -23,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dados = $banco->prepare($sql);
 
     // Ligando os parâmetros
-    $dados->bindParam(':login', $username);
+    $dados->bindParam(':login', $username); // Associa o parâmetro :login com a variável $login e por ai vai
     $dados->bindParam(':senha', $password);
     $dados->bindParam(':nome_completo', $nome_completo);
     $dados->bindParam(':cpf', $cpf);
@@ -38,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: index.php");
         exit;
     } else {
-        echo "<p>ERRO: cadastro não concluído...</p>";
+        echo "<p>ERRO: cadastro não concluído...</p>"; //essa ideia do chat foi boa hein
     }
 }
 ?>
@@ -50,10 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Cadastrar</title>
     <link rel="stylesheet" href="./assets/css/cadastrar.css">
 </head>
-<body>
+<body style="background-color: gray;">
     <div class="login">
         <h2>Cadastro do Vingador</h2>
-        <!-- Formulário com método POST -->
         <form action="" method="POST" id="loginFormulario">
             <div class="inputInfos">
                 <label for="username">Usuário</label>

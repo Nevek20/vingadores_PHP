@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dados = $banco->prepare($sql);
     $dados->bindParam(':login', $username);
     $dados->execute();
-    $user = $dados->fetch(PDO::FETCH_ASSOC);
+    $user = $dados->fetch(PDO::FETCH_ASSOC); //Esse FETCH_ASSOC é uma constante que indica como os dados devem ser retornados (um array associativo, onde as chaves são os nomes das colunas do banco de dados e os valores são os dados dessa linha)
     
     if ($user) {
         //var_dump($_POST);
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body>
+<body style="background-color: gray;">
     <div class="login">
         <h2>Login do QG</h2>
         <form action="" method="POST" id="loginFormulario">
@@ -55,8 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($erro): ?>
             <p id="mensagemErro" style="color: red;"><?= $erro ?></p>
         <?php endif; ?>
-        <p id="mensagemErro" style="color: red; display:none;">Usuário ou senha inválidos.</p>
-        <a href="#" id="esqueciSenha" class="esqueci_senha">Esqueci a senha.</a>
+        <a href="esqueci.php" id="esqueciSenha" class="esqueci_senha">Esqueci a senha.</a>
         <a href="cadastrar.php" id="Cadastrar1" class="cadastrar" style="color: #4caf50;">Cadastrar.</a>
     </div>
 </body>
