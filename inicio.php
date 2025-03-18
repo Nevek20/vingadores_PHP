@@ -15,18 +15,18 @@ $resultado = $banco->query($select)->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <main class="container my-5"> 
     <table class="table table-striped"> 
-    <button><a href="#">Criar novo Vingador</a></button> 
+    <button><a href="index.php">Sair</a></button> 
         <tr> 
             <td>ID</td> 
             <td>Nome</td> 
-            <td>Endereço</td> 
+            <td>Usuário</td>
             <td>Botões utilitários</td>
         </tr> 
     <?php foreach($resultado as $lista) { ?> 
         <tr> 
             <td> <?= $lista ['id'] ?> </td> 
             <td> <?php echo $lista ['nome_completo'] ?> </td> 
-            <td> <?php echo $lista ['endereco'] ?></td>
+            <td> <?php echo $lista ['login'] ?></td>
             <td> 
                 <a href="abrir.php?id=<?= $lista['id'] ?>" class="btn btn-primary">Abrir</a> 
                 <a href="editar.php?id=<?= $lista['id'] ?>" class="btn btn-warning">Editar</a>  

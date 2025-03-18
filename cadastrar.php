@@ -11,21 +11,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['senha']; 
     $nome_completo = $_POST['nome_completo'];
     $endereco = $_POST['endereco'];
+    $cpf = $_POST['cpf'];
+    $tel1 = $_POST['tel1'];
+    $tel2 = $_POST['tel2'];
+    $logradouro = $_POST['logradouro'];
+    $n_casa = $_POST['n_casa'];
+    $bairro = $_POST['bairro'];
+    $nascimento = $_POST['nascimento'];
 
-    $sql = "INSERT INTO tb_login (login, senha, nome_completo, endereco) VALUES (:login, :senha, :nome_completo, :endereco)";
-    $stmt = $banco->prepare($sql);
+    $sql = "INSERT INTO tb_login (login, senha, nome_completo, cpf, tel1, tel2, logradouro, n_casa, bairro, nascimento) VALUES (:login, :senha, :nome_completo, :cpf, :tel1, :tel2, :logradouro, :n_casa, :bairro, :nascimento)";
+    $dados = $banco->prepare($sql);
 
     // Ligando os parâmetros
-    $stmt->bindParam(':login', $username);
-    $stmt->bindParam(':senha', $password);
-    $stmt->bindParam(':nome_completo', $nome_completo);
-    $stmt->bindParam(':endereco', $endereco);
+    $dados->bindParam(':login', $username);
+    $dados->bindParam(':senha', $password);
+    $dados->bindParam(':nome_completo', $nome_completo);
+    $dados->bindParam(':cpf', $cpf);
+    $dados->bindParam(':tel1', $tel1);
+    $dados->bindParam(':tel2', $tel2);
+    $dados->bindParam(':logradouro', $logradouro);
+    $dados->bindParam(':n_casa', $n_casa);
+    $dados->bindParam(':bairro', $bairro);
+    $dados->bindParam(':nascimento', $nascimento);
 
-    if ($stmt->execute()) {
+    if ($dados->execute()) {
         header("Location: index.php");
         exit;
     } else {
-        echo "<p>Erro ao cadastrar. Tente novamente.</p>";
+        echo "<p>ERRO: cadastro não concluído...</p>";
     }
 }
 ?>
@@ -55,8 +68,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="nome" name="nome_completo" required>
             </div>
             <div class="inputInfos">
-                <label for="endereco">Endereço</label>
-                <input type="text" id="endereco" name="endereco" required>
+                <label for="cpf">CPF</label>
+                <input type="text" name="cpf" id="cpf">
+            </div>
+            <div class="inputInfos">
+                <label for="nascimento">Data de nascimento</label>
+                <input type="date" name="nascimento" id="nascimento">
+            </div>
+            <div class="inputInfos">
+                <label for="logradouro">logradouro</label>
+                <input type="text" id="logradouro" name="logradouro" required>
+                <label for="n_casa">Nr da casa</label>
+                <input type="text" id="n_casa" name="n_casa" required>
+                <label for="bairro">Bairro</label>
+                <input type="text" name="bairro" id="bairro" required>
+            </div>
+            <div class="inputInfos">
+                <label for="tel1">Telefone 1</label>
+                <input type="text" name="tel1" id="tel1">
+                <label for="tel2">Telefone 2</label>
+                <input type="text" name="tel2" id="tel2">
             </div>
             <button type="submit">Cadastrar</button>
         </form>

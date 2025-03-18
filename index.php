@@ -12,13 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];  
 
     $sql = "SELECT * FROM tb_login WHERE login = :login";
-    $stmt = $banco->prepare($sql);
-    $stmt->bindParam(':login', $username);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $dados = $banco->prepare($sql);
+    $dados->bindParam(':login', $username);
+    $dados->execute();
+    $user = $dados->fetch(PDO::FETCH_ASSOC);
     
     if ($user) {
-        var_dump($_POST);
+        //var_dump($_POST);
         if ($password === $user['senha']) {
             header("Location: inicio.php");
             exit;

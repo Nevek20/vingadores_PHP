@@ -5,12 +5,12 @@ $user = 'root';
 $pw = '';
 
 $banco = new PDO($dsn, $user, $pw);
+
 $banco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$select = 'SELECT id, login, nome_completo, endereco FROM tb_login';
 
 $id = $_GET['id'];
 
-$dados = $banco->prepare('SELECT id, nome_completo, endereco FROM tb_login WHERE id = :id');
+$dados = $banco->prepare('SELECT id, nome_completo, logradouro, cpf, tel1, tel2, n_casa, bairro, nascimento FROM tb_login WHERE id = :id');
 $dados->bindParam(':id', $id, PDO::PARAM_INT);
 $dados->execute();
 $dados = $dados->fetch(PDO::FETCH_ASSOC);
@@ -34,8 +34,32 @@ $dados = $dados->fetch(PDO::FETCH_ASSOC);
                     <input type="text" value="<?= $dados['nome_completo'] ?>" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled>
                 </div>
                 <div class="mb-3">
-                    <label for="endereco" class="form-label">Endereço</label>
-                    <input type="text" value="<?= $dados['endereco'] ?>" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled>
+                    <label for="cpf">CPF</label>
+                    <input type="text" value="<?= $dados['cpf'] ?>" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="tel1">Telefone 1</label>
+                    <input type="text" value="<?= $dados['tel1'] ?>" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="tel2">Telefone 2</label>
+                    <input type="text" value="<?= $dados['tel2'] ?>" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="logradouro" class="form-label">Logradouro</label>
+                    <input type="text" value="<?= $dados['logradouro'] ?>" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="n_casa">Nr da casa</label>
+                    <input type="text" value="<?= $dados['n_casa'] ?>" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" value="<?= $dados['bairro'] ?>" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="nascimento">Data de nascimento</label>
+                    <input type="date" value="<?= $dados['nascimento'] ?>" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled>
                 </div>
             </section>
         </form>
